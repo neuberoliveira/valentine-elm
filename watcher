@@ -1,0 +1,1 @@
+nodemon -w src/ --ext elm --exec "elm make src/Main.elm --output=dist/elm/main.js"
