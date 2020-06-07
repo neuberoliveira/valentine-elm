@@ -4355,7 +4355,6 @@ function _Browser_load(url)
 		}
 	}));
 }
-var $author$project$Main$init = '...';
 var $elm$core$Basics$EQ = {$: 'EQ'};
 var $elm$core$Basics$GT = {$: 'GT'};
 var $elm$core$Basics$LT = {$: 'LT'};
@@ -5144,36 +5143,28 @@ var $elm$core$Task$perform = F2(
 			$elm$core$Task$Perform(
 				A2($elm$core$Task$map, toMessage, task)));
 	});
+var $elm$browser$Browser$application = _Browser_application;
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
+var $author$project$Main$init = F3(
+	function (f, u, k) {
+		return _Utils_Tuple2('asfjhgsadh', $elm$core$Platform$Cmd$none);
+	});
 var $elm$core$Platform$Sub$batch = _Platform_batch;
 var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
-var $elm$browser$Browser$sandbox = function (impl) {
-	return _Browser_element(
-		{
-			init: function (_v0) {
-				return _Utils_Tuple2(impl.init, $elm$core$Platform$Cmd$none);
-			},
-			subscriptions: function (_v1) {
-				return $elm$core$Platform$Sub$none;
-			},
-			update: F2(
-				function (msg, model) {
-					return _Utils_Tuple2(
-						A2(impl.update, msg, model),
-						$elm$core$Platform$Cmd$none);
-				}),
-			view: impl.view
-		});
+var $author$project$Main$subscriptionsHandler = function (model) {
+	return $elm$core$Platform$Sub$none;
 };
 var $author$project$Main$update = F2(
-	function (ctype, _v0) {
-		if (ctype.$ === 'Me') {
-			return 'good choice';
-		} else {
-			return 'dont kid me';
-		}
+	function (c, m) {
+		return _Utils_Tuple2('Update', $elm$core$Platform$Cmd$none);
 	});
+var $author$project$Main$urlChangeHandler = function (url) {
+	return 'url ???';
+};
+var $author$project$Main$urlRequestHandler = function (req) {
+	return 'Request ???';
+};
 var $elm$virtual_dom$VirtualDom$attribute = F2(
 	function (key, value) {
 		return A2(
@@ -5289,97 +5280,120 @@ var $elm$html$Html$Attributes$src = function (url) {
 };
 var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
 var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
-var $author$project$Main$view = function (str) {
-	return A2(
-		$elm$html$Html$div,
-		_List_fromArray(
+var $author$project$Main$applicationView = A2(
+	$elm$html$Html$div,
+	_List_fromArray(
+		[
+			$elm$html$Html$Attributes$class('card'),
+			A2($elm$html$Html$Attributes$style, 'width', '18rem')
+		]),
+	_List_fromArray(
+		[
+			A2(
+			$elm$html$Html$img,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$src('assets/img/card2.jpg'),
+					$elm$html$Html$Attributes$class('card-img-top')
+				]),
+			_List_Nil),
+			A2(
+			$elm$html$Html$div,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$class('card-body')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$h5,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('card-title')
+						]),
+					_List_fromArray(
+						[
+							$elm$html$Html$text('Teste')
+						])),
+					A2(
+					$elm$html$Html$p,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('card-text')
+						]),
+					_List_fromArray(
+						[
+							$elm$html$Html$text('Quem é o melhor marido do mundo?')
+						])),
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('row justify-content-between')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$button,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$id('btWin'),
+									$elm$html$Html$Attributes$class('btn btn-danger'),
+									A2($elm$html$Html$Attributes$attribute, 'data-toggle', 'modal'),
+									A2($elm$html$Html$Attributes$attribute, 'data-target', '#win-modal'),
+									A2($elm$html$Html$Attributes$attribute, 'type', 'button')
+								]),
+							_List_fromArray(
+								[
+									$elm$html$Html$text('Neuber')
+								])),
+							A2(
+							$elm$html$Html$button,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$id('btFail'),
+									$elm$html$Html$Attributes$class('btn btn-danger'),
+									A2($elm$html$Html$Attributes$attribute, 'data-toggle', 'modal'),
+									A2($elm$html$Html$Attributes$attribute, 'data-target', '#fail-modal'),
+									A2($elm$html$Html$Attributes$attribute, 'type', 'button')
+								]),
+							_List_fromArray(
+								[
+									$elm$html$Html$text('Outro')
+								]))
+						]))
+				])),
+			$author$project$Modal$render(
+			{content: 'Eu sabia !!! huahsuhsuhsusu', id: 'win-modal', okText: 'OK', title: 'Huuuhu!!!!'}),
+			$author$project$Modal$render(
+			{content: 'Deixa de ser besta hahaha', id: 'fail-modal', okText: 'OK', title: ':)'})
+		]));
+var $author$project$Main$view = function (md) {
+	return {
+		body: _List_fromArray(
 			[
-				$elm$html$Html$Attributes$class('card'),
-				A2($elm$html$Html$Attributes$style, 'width', '18rem')
-			]),
-		_List_fromArray(
-			[
-				A2(
-				$elm$html$Html$img,
-				_List_fromArray(
-					[
-						$elm$html$Html$Attributes$src('assets/img/card2.jpg'),
-						$elm$html$Html$Attributes$class('card-img-top')
-					]),
-				_List_Nil),
 				A2(
 				$elm$html$Html$div,
 				_List_fromArray(
 					[
-						$elm$html$Html$Attributes$class('card-body')
+						$elm$html$Html$Attributes$class('container-fluid')
 					]),
 				_List_fromArray(
 					[
 						A2(
-						$elm$html$Html$h5,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('card-title')
-							]),
-						_List_fromArray(
-							[
-								$elm$html$Html$text('Teste')
-							])),
-						A2(
-						$elm$html$Html$p,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('card-text')
-							]),
-						_List_fromArray(
-							[
-								$elm$html$Html$text('Quem é o melhor marido do mundo?')
-							])),
-						A2(
 						$elm$html$Html$div,
 						_List_fromArray(
 							[
-								$elm$html$Html$Attributes$class('row justify-content-between')
+								$elm$html$Html$Attributes$class('row justify-content-center align-items-center')
 							]),
 						_List_fromArray(
-							[
-								A2(
-								$elm$html$Html$button,
-								_List_fromArray(
-									[
-										$elm$html$Html$Attributes$id('btWin'),
-										$elm$html$Html$Attributes$class('btn btn-danger'),
-										A2($elm$html$Html$Attributes$attribute, 'data-toggle', 'modal'),
-										A2($elm$html$Html$Attributes$attribute, 'data-target', '#win-modal'),
-										A2($elm$html$Html$Attributes$attribute, 'type', 'button')
-									]),
-								_List_fromArray(
-									[
-										$elm$html$Html$text('Neuber')
-									])),
-								A2(
-								$elm$html$Html$button,
-								_List_fromArray(
-									[
-										$elm$html$Html$Attributes$id('btFail'),
-										$elm$html$Html$Attributes$class('btn btn-danger'),
-										A2($elm$html$Html$Attributes$attribute, 'data-toggle', 'modal'),
-										A2($elm$html$Html$Attributes$attribute, 'data-target', '#fail-modal'),
-										A2($elm$html$Html$Attributes$attribute, 'type', 'button')
-									]),
-								_List_fromArray(
-									[
-										$elm$html$Html$text('Outro')
-									]))
-							]))
-					])),
-				$author$project$Modal$render(
-				{content: 'Eu sabia !!! huahsuhsuhsusu', id: 'win-modal', okText: 'OK', title: 'Huuuhu!!!!'}),
-				$author$project$Modal$render(
-				{content: 'Deixa de ser besta hahaha', id: 'fail-modal', okText: 'OK', title: ':)'})
-			]));
+							[$author$project$Main$applicationView]))
+					]))
+			]),
+		title: 'Hello from ELM'
+	};
 };
-var $author$project$Main$main = $elm$browser$Browser$sandbox(
-	{init: $author$project$Main$init, update: $author$project$Main$update, view: $author$project$Main$view});
+var $author$project$Main$main = $elm$browser$Browser$application(
+	{init: $author$project$Main$init, onUrlChange: $author$project$Main$urlChangeHandler, onUrlRequest: $author$project$Main$urlRequestHandler, subscriptions: $author$project$Main$subscriptionsHandler, update: $author$project$Main$update, view: $author$project$Main$view});
 _Platform_export({'Main':{'init':$author$project$Main$main(
 	$elm$json$Json$Decode$succeed(_Utils_Tuple0))(0)}});}(this));

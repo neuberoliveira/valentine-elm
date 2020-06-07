@@ -11,20 +11,11 @@
 
     <script src="assets/js/jquery.slim.min.js" defer></script>
     <script src="assets/js/bootstrap.min.js" defer></script>
-  </head>
-  <body onload="elmInit()">
-    <div class="container-fluid">
-      <div class="row justify-content-center align-items-center">
-        <div id="elm"></div>
-      </div>
-    </div>
-
     <script>
       const elmInit = () => {
-        var app = Elm.Main.init({
-          node: document.getElementById('elm'),
-        })
+        var app = Elm.Main.init({})
       }
     </script>
-  </body>
+  </head>
+  <body onload="elmInit()"></body>
 </html>
