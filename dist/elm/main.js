@@ -5147,7 +5147,7 @@ var $elm$browser$Browser$application = _Browser_application;
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
 var $author$project$Main$init = F3(
-	function (f, u, k) {
+	function (_v0, url, key) {
 		return _Utils_Tuple2('asfjhgsadh', $elm$core$Platform$Cmd$none);
 	});
 var $elm$core$Platform$Sub$batch = _Platform_batch;
@@ -5293,7 +5293,7 @@ var $author$project$Main$applicationView = A2(
 			$elm$html$Html$img,
 			_List_fromArray(
 				[
-					$elm$html$Html$Attributes$src('assets/img/card2.jpg'),
+					$elm$html$Html$Attributes$src('assets/img/card4.jpg'),
 					$elm$html$Html$Attributes$class('card-img-top')
 				]),
 			_List_Nil),
