@@ -44,7 +44,7 @@ getParam url paramName defaultValue =
   let parsedParam = (Parser.parse (Parser.s "valentine-elm" <?> (Query.string paramName)) url)
   in
   case parsedParam of
-    Nothing -> "parser error"
+    Nothing -> defaultValue
     Just qs -> case qs of
       Just qsval -> qsval
       Nothing -> defaultValue
