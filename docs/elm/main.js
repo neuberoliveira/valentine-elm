@@ -5927,7 +5927,7 @@ var $author$project$Main$getParam = F3(
 				$elm$url$Url$Parser$Query$string(paramName)),
 			url);
 		if (parsedParam.$ === 'Nothing') {
-			return defaultValue;
+			return 'parser error';
 		} else {
 			var qs = parsedParam.a;
 			if (qs.$ === 'Just') {
