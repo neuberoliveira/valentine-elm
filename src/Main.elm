@@ -53,10 +53,10 @@ buildInit url =
   {
     url=url,
     config={
-      from=getParam url "from" "Neuber"
-      ,to=getParam url "to" "Lilian"
-      ,question=getParam url "question" "Quem é o melhor marido do mundo?" 
-      ,other=getParam url "other" "Outro"
+      from=getParam url "from" "Elm"
+      ,to=getParam url "to" "You"
+      ,question=getParam url "question" "Whats the best language for frontend?" 
+      ,other=getParam url "other" "Others"
     }
   }
 init: () -> Url.Url -> Browser.Navigation.Key -> (Model, Cmd String) 

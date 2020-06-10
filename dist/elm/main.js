@@ -5944,10 +5944,10 @@ var $author$project$Main$getParam = F3(
 var $author$project$Main$buildInit = function (url) {
 	return {
 		config: {
-			from: A3($author$project$Main$getParam, url, 'from', 'Neuber'),
-			other: A3($author$project$Main$getParam, url, 'other', 'Outro'),
-			question: A3($author$project$Main$getParam, url, 'question', 'Quem é o melhor marido do mundo?'),
-			to: A3($author$project$Main$getParam, url, 'to', 'Lilian')
+			from: A3($author$project$Main$getParam, url, 'from', 'Elm'),
+			other: A3($author$project$Main$getParam, url, 'other', 'Others'),
+			question: A3($author$project$Main$getParam, url, 'question', 'Whats the best language for frontend?'),
+			to: A3($author$project$Main$getParam, url, 'to', 'You')
 		},
 		url: url
 	};
