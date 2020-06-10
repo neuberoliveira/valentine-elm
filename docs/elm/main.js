@@ -5922,9 +5922,12 @@ var $author$project$Main$getParam = F3(
 		var parsedParam = A2(
 			$elm$url$Url$Parser$parse,
 			A2(
-				$elm$url$Url$Parser$questionMark,
+				$elm$url$Url$Parser$slash,
 				$elm$url$Url$Parser$s('valentine-elm'),
-				$elm$url$Url$Parser$Query$string(paramName)),
+				A2(
+					$elm$url$Url$Parser$questionMark,
+					$elm$url$Url$Parser$s('/'),
+					$elm$url$Url$Parser$Query$string(paramName))),
 			url);
 		if (parsedParam.$ === 'Nothing') {
 			return defaultValue;
