@@ -1,12 +1,12 @@
 module Main exposing (..)
-import Html exposing (Html, img, h5, p, a, div, button, text)
+import Html exposing (Html, img, h5, p, a, div, span, button, text)
 import Html.Attributes exposing (attribute, id, class, style, src, href)
 import Html.Events exposing (onClick)
 import Browser exposing(UrlRequest)
 import Browser.Navigation
 import Debug
 import Url
-import Url.Parser exposing (Parser, (</>), (<?>), int, map, oneOf, s, string)
+import Url.Parser as Parser exposing ((</>), (<?>))
 import Url.Parser.Query as Query
 import Modal
 
@@ -23,7 +23,8 @@ main = Browser.application
 
 type alias Config = 
   {
-    me:String
+    from:String
+    ,to: String
     ,other: String
     ,question: String
   }
@@ -33,39 +34,39 @@ type alias Model =
     ,config: Config
   }
 
-{- parseParam: String -> Url.Parser.Parser (Maybe String -> String) String
-parseParam p= s "/" <?> Query.string p -}
+emojiToString : Int -> String
+emojiToString code =String.fromChar (Char.fromCode code)
 
-type Route
-  = BlogQuery (Maybe String)
-  | MyParam ()
-
-routeParser : Parser (Route -> a) a
-routeParser =
-  oneOf
-    [ map BlogQuery (s "blog" <?> Query.string "q") ]
-
-getParam: Maybe String
-getParam = s "path" </> string
+getParam : Url.Url -> String -> String -> String
+getParam url paramName defaultValue = 
+  -- let parsedParam = (Parser.parse (Parser.s "src" </> Parser.s "Main.elm" <?> (Query.string paramName)) url)
+  let parsedParam = (Parser.parse (Parser.s "dist" </> Parser.s "index.html" <?> (Query.string paramName)) url)
+  in
+  case parsedParam of
+    Nothing -> defaultValue
+    Just qs -> case qs of
+      Just qsval -> qsval
+      Nothing -> defaultValue
 
 buildInit: Url.Url -> Model
 buildInit url = 
   {
     url=url,
     config={
-      me="Neuber"
-      ,question="Quem é o melhor marido do mundo?" 
-      ,other="KAJSHDKJSAHD"
+      from=getParam url "from" "Neuber"
+      ,to=getParam url "to" "Lilian"
+      ,question=getParam url "question" "Quem é o melhor marido do mundo?" 
+      ,other=getParam url "other" "Outro"
     }
   }
 init: () -> Url.Url -> Browser.Navigation.Key -> (Model, Cmd String) 
-init _ url key = (Debug.log "INIT" (buildInit url), Cmd.none)
+init _ url key = (buildInit url, Cmd.none)
 
 urlRequestHandler : UrlRequest -> String
 urlRequestHandler req = "request"
 
 urlChangeHandler: Url.Url -> String
-urlChangeHandler url = "url ???"
+urlChangeHandler url = "???"
 
 subscriptionsHandler: model -> Sub msg
 subscriptionsHandler model = Sub.none
@@ -80,29 +81,31 @@ view md =
     body = [
       div [class "container-fluid"] [
         div [class "row justify-content-center align-items-center"] [
-          div [class "card", style "width" "23rem"] [
+          div [class "card", style "width" "23rem", style "margin-top" "20px", style "position" "relative"] [
             img [ src "assets/img/card4.jpg", class "card-img-top"] []
+            ,span [id "sender"] [text ("De: " ++ md.config.from)]
+            ,span [id "receiver"] [text ("Para: " ++ md.config.to)]
+
             ,div [class "card-body"] [
               h5 [class "card-title"] [text "Teste"]
               ,p [class "card-text"] [text md.config.question]
-
               ,div [class "row justify-content-between"] [
-                button [id "btWin", class "btn btn-danger", attribute "data-toggle" "modal", attribute "data-target" "#win-modal", attribute "type" "button"] [text md.config.me]
-                ,button [id "btFail", class "btn btn-danger", attribute "data-toggle" "modal", attribute "data-target" "#fail-modal", attribute "type" "button"] [text "Outro"]
+                button [id "btWin", class "btn btn-danger", attribute "data-toggle" "modal", attribute "data-target" "#win-modal", attribute "type" "button"] [text md.config.from]
+                ,button [id "btFail", class "btn btn-danger", attribute "data-toggle" "modal", attribute "data-target" "#fail-modal", attribute "type" "button"] [text md.config.other]
               ]
             ]
             
             ,Modal.render {
-              title = "Huuuhu!!!!" 
+              title = emojiToString 0x1F60D
               ,okText ="OK"
-              ,content ="Eu sabia !!! huahsuhsuhsusu"
+              ,content ="Eu sabia !!! " ++ emojiToString 0x1F618
               ,id = "win-modal"
             }
             
             ,Modal.render {
-              title = ":)" 
+              title = emojiToString 0x1F603 
               ,okText ="OK"
-              ,content ="Deixa de ser besta hahaha"
+              ,content ="Deixa de ser besta " ++ emojiToString 0x1F60A
               ,id = "fail-modal"
             }
           ]
