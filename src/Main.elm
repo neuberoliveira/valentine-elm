@@ -41,7 +41,7 @@ getParam : Url.Url -> String -> String -> String
 getParam url paramName defaultValue = 
   -- let parsedParam = (Parser.parse (Parser.s "src" </> Parser.s "Main.elm" <?> (Query.string paramName)) url)
   -- let parsedParam = (Parser.parse (Parser.s "docs" </> Parser.s "index.html" <?> (Query.string paramName)) url)
-  let parsedParam = (Parser.parse (Parser.s "valentine-elm" </> Parser.s "/" <?> (Query.string paramName)) url)
+  let parsedParam = (Parser.parse (Parser.s "valentine-elm" <?> (Query.string paramName)) url)
   in
   case parsedParam of
     Nothing -> defaultValue
